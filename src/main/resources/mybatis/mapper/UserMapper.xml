@@ -6,4 +6,16 @@
     <select id="queryUserList" resultType="user">
         select * from all_user;
     </select>
+    <select id="queryUserByName" resultType="user">
+        select user_id, user_name, user_pwd, salt, user_email from all_user where user_name = #{userName};
+    </select>
+    <select id="queryUserByEmail" resultType="user">
+        select user_id, user_name, user_pwd, salt, user_email from all_user where user_email = #{userEmail};
+    </select>
+    <select id="queryByNameAndPassword" resultType="user">
+        select user_id, user_name, user_pwd, salt, user_email from all_user where user_name = #{userName} and user_pwd = #{password};
+    </select>
+    <insert id="addUser" parameterType="user">
+        insert into all_user (user_name, user_pwd, salt, user_email) values (#{userName}, #{userPwd}, #{salt}, #{userEmail});
+    </insert>
 </mapper>
